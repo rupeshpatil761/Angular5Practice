@@ -1,0 +1,10 @@
+<div class="container">
+    <header></header>
+    <h4>User Details: </h4>
+    <span *ngIf="user?.id == undefined; else details">No Details Found</span>
+    <ng-template #details>
+        <span>{{user.id}}</span>&nbsp;&nbsp;&nbsp;<span>{{user.name}}</span>&nbsp;&nbsp;&nbsp;<span>{{user.city}}</span>
+    </ng-template>
+    <br>
+    <button class="btn-primary" (click)="goBack()">Back</button>
+</div>
