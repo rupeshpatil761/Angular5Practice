@@ -1,0 +1,13 @@
+<div class="container">
+   <header></header>
+    <h4>Welcome to Demo Picker Demo</h4>
+    <span style="margin-top: 9px;"><b>From :</b></span><md2-datepicker  [(ngModel)]="minDate" name="minDate" [touchUi]="true" (ngModelChange)="minDateChanged($event)"></md2-datepicker>
+    &nbsp;
+    <span><b style="margin-top:9px">To :</b><md2-datepicker  [(ngModel)]="maxDate" name="maxDate" [touchUi]="true" (ngModelChange)="maxDateChanged($event)"></md2-datepicker> </span>
+
+    <br><br><br>
+    <h3>Display Dates using Pipes</h3>
+    <br>
+    <label>Start Date: </label>{{startTime | date : 'mediumDate'}} &nbsp;&nbsp;&nbsp;&nbsp;<label>End Date: </label>{{endTime | date : 'mediumDate' }}
+    <br><label>Current Full Date:</label>&nbsp;<span>{{currentTime | date : 'EEEE dd/MMM/yyyy hh:mm:ss'}}</span>
+</div>

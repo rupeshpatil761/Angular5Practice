@@ -10,9 +10,13 @@ import {ParamsComponent} from './params/params.component';
 import {UserService} from './services/users.service';
 import {UserComponent} from './user/user.component';
 import {FormsModule} from '@angular/forms';
+import {DatePickerComponenet} from './datepicker/datepicker.component';
+import {DatePickerService} from './services/datepicker.service';
+import { Md2Module }  from 'md2';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",component : PaginationComponent},
-{path:"params",component : ParamsComponent},{path:"user",component : UserComponent}]; // {path:"user/:id",component : UserComponent}
+{path:"params",component : ParamsComponent},{path:"user",component : UserComponent},{path:"date-picker",component : DatePickerComponenet}]; // {path:"user/:id",component : UserComponent}
 
 
 @NgModule({
@@ -22,15 +26,18 @@ const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",
     HeaderComponent,
     HomeComponent,
     ParamsComponent,
-    UserComponent
+    UserComponent,
+    DatePickerComponenet
   ],
   imports: [
     BrowserModule,
     FormsModule,
     DataTableModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    Md2Module,
+    NoopAnimationsModule
   ],
-  providers: [UserService],
+  providers: [UserService,DatePickerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

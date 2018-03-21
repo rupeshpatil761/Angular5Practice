@@ -1,0 +1,28 @@
+TO Add Date Pickers in your component follow below steps:
+
+1) Add dependency into package.json : "md2": "0.0.29"
+2) Import NoopAnimationsModule in app.module.ts (Imports section) from import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+3) Create DatePickerService for utility methods like change getStartTime, getEndTime to get date in milliseconds.
+4) Create Html Page and include below code for datepickers:
+    <span style="margin-top: 9px;"><b>From :</b></span><md2-datepicker  [(ngModel)]="minDate" name="minDate" [touchUi]="true" (ngModelChange)="minDateChanged($event)"></md2-datepicker>
+    &nbsp;
+    <span><b style="margin-top:9px">To :</b><md2-datepicker  [(ngModel)]="maxDate" name="maxDate" [touchUi]="true" (ngModelChange)="maxDateChanged($event)"></md2-datepicker> </span>
+5) Set default date to datepickers like below: Make sure name property value must be same as variables declared in ts file.
+6) Display date in string format using pipes:
+    <label>Start Date: </label>{{startTime | date : 'mediumDate'}} &nbsp;&nbsp;&nbsp;&nbsp;<label>End Date: </label>{{endTime | date : 'mediumDate' }}
+    <br><label>Current Full Date:</label>&nbsp;{{currentTime | date : 'fullDate'}} &nbsp; {{currentTime | date :'shortTime' }}
+7) Display Current Date using TimerObservable:
+     import { TimerObservable } from "rxjs/observable/TimerObservable";
+     Create one method and put timer code in that and call that method in ngOnInit()
+     private _updateCurrentDate() {
+        TimerObservable.create(0, this.interval)
+        .takeWhile(() => this.alive)
+        .subscribe(() => {
+            //this.httpService.post('/business/eway-web-dashboard', body)
+            //.subscribe((data) => {
+                //processing logic goes here
+            //});
+            this.currentTime = new Date().getTime();
+        });
+    }
+
