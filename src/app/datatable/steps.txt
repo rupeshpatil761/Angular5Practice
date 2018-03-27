@@ -1,0 +1,5 @@
+1) In angular-cli.json add add dependencies i.e JS , CSS and images //Download from https://datatables.net/download/index
+2) Check the package.json for dependencies.
+3) Html file with table.
+4) ts file with configuration for datatable i.e options like copy,csv,excel,pdf,print
+5) Example link https://github.com/ramsatt/Angular-4---Data-Table---File-Export/blob/master/.angular-cli.json
