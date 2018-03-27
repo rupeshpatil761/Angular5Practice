@@ -19,10 +19,13 @@ export class DatatableComponent implements OnInit{
            $('#example').DataTable( {
                 dom: 'Bfrtip',
                 buttons: [
-                    'csv', 'excel', 'pdf', 'print'
-                ]
+                    'csv', 'excel', 'pdf', 'print' //copy
+                ],
+                //paging: false,
+                //scrollY: 400,
+                //select: true,
+                //info:false
             });
         });
     }
-
 }

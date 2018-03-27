@@ -3,6 +3,7 @@
 2) Routing,Reading query params, URI params, passing optional params.
 3) md2 Datepicker with pipes.
 4) Bootstrap datatable with export options.
+5) angular5-csv
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.
 

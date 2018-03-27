@@ -16,10 +16,11 @@ import { Md2Module }  from 'md2';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsComponent} from './forms/forms.component';
 import {DatatableComponent} from './datatable/datatable.component';
+import {Angular5CSV} from './angular5csv/angular5csv.component';
 
 const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",component : PaginationComponent},
 {path:"params",component : ParamsComponent},{path:"user",component : UserComponent},{path:"date-picker",component : DatePickerComponenet}
-,{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent}]; // {path:"user/:id",component : UserComponent}
+,{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"angular5csv",component : Angular5CSV}]; // {path:"user/:id",component : UserComponent}
 
 
 @NgModule({
@@ -32,7 +33,8 @@ const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",
     UserComponent,
     DatePickerComponenet,
     FormsComponent,
-    DatatableComponent
+    DatatableComponent,
+    Angular5CSV
   ],
   imports: [
     BrowserModule,
