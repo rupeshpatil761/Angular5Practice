@@ -3,3 +3,4 @@
 3) Html file with table.
 4) ts file with configuration for datatable i.e options like copy,csv,excel,pdf,print
 5) Example link https://github.com/ramsatt/Angular-4---Data-Table---File-Export/blob/master/.angular-cli.json
+6) Bootstrap table options https://datatables.net/examples/basic_init/filter_only.html
