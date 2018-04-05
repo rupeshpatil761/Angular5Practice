@@ -7,6 +7,8 @@ import {
     Validators,
     FormBuilder
 } from '@angular/forms';
+import { forbiddenNameValidator } from '../services/forbidden-name.directive';
+
 @Component({
     selector : 'forms',
     templateUrl:'forms.component.html'
@@ -19,8 +21,7 @@ export class FormsComponent implements OnInit{
         'German',
     ]
     myform: FormGroup;
-    firstName: FormControl; 
-    lastName: FormControl;
+    name: FormControl; 
     email: FormControl;
     password: FormControl;
     language: FormControl;
@@ -30,8 +31,7 @@ export class FormsComponent implements OnInit{
     }
 
     createFormControls() { 
-        this.firstName = new FormControl('', Validators.required);
-        this.lastName = new FormControl('', Validators.required);
+        this.name = new FormControl('', [Validators.required,Validators.minLength(4),forbiddenNameValidator(/bob/i)]);
         this.email = new FormControl('', [
             Validators.required,
             Validators.pattern("[^ @]*@[^ @]*")
@@ -45,10 +45,7 @@ export class FormsComponent implements OnInit{
 
     createForm() { 
         this.myform = new FormGroup({
-            name: new FormGroup({
-            firstName: this.firstName,
-            lastName: this.lastName,
-            }),
+            name: this.name,
             email: this.email,
             password: this.password,
             language: this.language
@@ -58,19 +55,19 @@ export class FormsComponent implements OnInit{
         if (this.myform.valid) {
             console.log("Form Submitted!");
         }else{
-            this.validateAllFormFields(this.myform); 
+            //this.validateAllFormFields(this.myform); 
         }
         //this.myform.reset();
     }
 
-    validateAllFormFields(formGroup: FormGroup) {         //{1}
-        Object.keys(formGroup.controls).forEach(field => {  //{2}
-            const control = formGroup.get(field);             //{3}
-            if (control instanceof FormControl) {             //{4}
+    validateAllFormFields(formGroup: FormGroup) {        
+        Object.keys(formGroup.controls).forEach(field => {  
+            const control = formGroup.get(field);            
+            if (control instanceof FormControl) {
             //control.markAsTouched({ onlySelf: true });
               control.markAsTouched();
-            } else if (control instanceof FormGroup) {        //{5}
-            this.validateAllFormFields(control);            //{6}
+            } else if (control instanceof FormGroup) {
+            this.validateAllFormFields(control); 
             }
         });
     }
