@@ -17,7 +17,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsComponent} from './forms/forms.component';
 import {DatatableComponent} from './datatable/datatable.component';
 import {Angular5CSV} from './angular5csv/angular5csv.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",component : PaginationComponent},
 {path:"params",component : ParamsComponent},{path:"user",component : UserComponent},{path:"date-picker",component : DatePickerComponenet}
 ,{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"angular5csv",component : Angular5CSV}]; // {path:"user/:id",component : UserComponent}
@@ -39,10 +39,12 @@ const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     DataTableModule,
     RouterModule.forRoot(routes),
     Md2Module,
     NoopAnimationsModule
+    
   ],
   providers: [UserService,DatePickerService],
   bootstrap: [AppComponent]
