@@ -1,0 +1,13 @@
+https://stackblitz.com/angular/yjpqevldovav?file=src%2Fapp%2Fshared%2Fforbidden-name.directive.ts
+
+https://angular.io/guide/form-validation
+
+https://codecraft.tv/courses/angular/forms/submitting-and-resetting/
+
+https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/
+
+https://hackernoon.com/create-reuseable-validation-directive-in-angualr-2-dcb0b0df2ce8
+
+https://v4-alpha.getbootstrap.com/components/forms/#examples
+
+Note : Dont forget to imports ReactiveFormsModule in app.module.ts
