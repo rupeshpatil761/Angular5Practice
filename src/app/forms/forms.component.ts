@@ -23,6 +23,7 @@ export class FormsComponent implements OnInit{
     myform: FormGroup;
     name: FormControl; 
     email: FormControl;
+    mobile: FormControl;
     password: FormControl;
     language: FormControl;
     ngOnInit() {
@@ -36,6 +37,7 @@ export class FormsComponent implements OnInit{
             Validators.required,
             Validators.pattern("[^ @]*@[^ @]*")
         ]);
+        this.mobile = new FormControl('', [Validators.required,Validators.pattern("[6789][0-9]{9}")]);
         this.password = new FormControl('', [
             Validators.required,
             Validators.minLength(8)
@@ -47,6 +49,7 @@ export class FormsComponent implements OnInit{
         this.myform = new FormGroup({
             name: this.name,
             email: this.email,
+            mobile: this.mobile,
             password: this.password,
             language: this.language
         });
@@ -59,16 +62,11 @@ export class FormsComponent implements OnInit{
         }
         //this.myform.reset();
     }
-
-    validateAllFormFields(formGroup: FormGroup) {        
-        Object.keys(formGroup.controls).forEach(field => {  
-            const control = formGroup.get(field);            
-            if (control instanceof FormControl) {
-            //control.markAsTouched({ onlySelf: true });
-              control.markAsTouched();
-            } else if (control instanceof FormGroup) {
-            this.validateAllFormFields(control); 
-            }
-        });
-    }
+    /*var txt;
+    var r = confirm("Press a button!");
+    if (r == true) {
+        txt = "You pressed OK!";
+    } else {
+        txt = "You pressed Cancel!";
+    }*/
 }
