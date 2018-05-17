@@ -9,6 +9,7 @@ import {HomeComponent} from './home/home.component';
 import {ParamsComponent} from './params/params.component';
 import {UserService} from './services/users.service';
 import {UserComponent} from './user/user.component';
+import {PdfComponent} from './pdfDownload/pdf.component';
 import {FormsModule} from '@angular/forms';
 import {DatePickerComponenet} from './datepicker/datepicker.component';
 import {DatePickerService} from './services/datepicker.service';
@@ -18,9 +19,13 @@ import {FormsComponent} from './forms/forms.component';
 import {DatatableComponent} from './datatable/datatable.component';
 import {Angular5CSV} from './angular5csv/angular5csv.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';  // replaces previous Http service
+
+
 const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",component : PaginationComponent},
 {path:"params",component : ParamsComponent},{path:"user",component : UserComponent},{path:"date-picker",component : DatePickerComponenet}
-,{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"angular5csv",component : Angular5CSV}]; // {path:"user/:id",component : UserComponent}
+,{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"angular5csv",component : Angular5CSV}
+,{path:"pdf-download",component : PdfComponent}]; // {path:"user/:id",component : UserComponent}
 
 
 @NgModule({
@@ -34,6 +39,7 @@ const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",
     DatePickerComponenet,
     FormsComponent,
     DatatableComponent,
+    PdfComponent,
     Angular5CSV
   ],
   imports: [
@@ -43,7 +49,8 @@ const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",
     DataTableModule,
     RouterModule.forRoot(routes),
     Md2Module,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    HttpModule
     
   ],
   providers: [UserService,DatePickerService],

@@ -1,0 +1,64 @@
+package co.tdis.motorsport.controllers;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import co.tdis.motorsport.bean.QuotationBean;
+import co.tdis.motorsport.bean.QuotationDriverDeductibleBean;
+import co.tdis.motorsport.bean.QuotationResponseBean;
+import co.tdis.motorsport.bean.RequestMoreInfoBean;
+import co.tdis.motorsport.services.QuotationService;
+import co.tdis.motorsport.util.MotorSportResponse;
+
+@RestController
+@CrossOrigin
+public class QuotationController {
+
+	@RequestMapping(path = "/download-quotation-for-pdf1", method = RequestMethod.POST)
+	 public ResponseEntity<?> downloadSampleCSV(@RequestBody String fileName) {
+	  System.out.println("Request received to download sample .csv file");
+	  System.out.println("File to download :"+fileName);
+	  //Resource resource = new ClassPathResource("/home/thrymr/Downloads/sample.pdf");
+	  final File tempFile = new File("/home/thrymr/Downloads/sample.pdf");
+	  if(tempFile.isFile()) {
+		  byte[] content = null;
+		  try {
+		   //content = FileCopyUtils.copyToByteArray(resource.getInputStream());
+		   content = FileCopyUtils.copyToByteArray(new FileInputStream(tempFile));
+		   System.out.println("Converted .pdf to bytes successfully.");
+		  } catch (IOException e1) {
+		   System.err.println("Error while converting file to bytes.");
+		   e1.printStackTrace();
+		  }
+		  HttpHeaders headers = new HttpHeaders();
+		  headers.setContentType(MediaType.parseMediaType(MediaType.APPLICATION_PDF_VALUE));
+		  System.out.println("Download sample .pdf request completed");
+		  System.err.println(content.length+"<<<<<file length");
+		  return new ResponseEntity<byte[]>(content, headers, HttpStatus.OK);  
+	  }else {
+		  System.out.println("File not found");
+		  return null;
+	  }
+	 }
+}
