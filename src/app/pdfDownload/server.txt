@@ -35,30 +35,37 @@ import co.tdis.motorsport.util.MotorSportResponse;
 @CrossOrigin
 public class QuotationController {
 
-	@RequestMapping(path = "/download-quotation-for-pdf1", method = RequestMethod.POST)
-	 public ResponseEntity<?> downloadSampleCSV(@RequestBody String fileName) {
-	  System.out.println("Request received to download sample .csv file");
-	  System.out.println("File to download :"+fileName);
-	  //Resource resource = new ClassPathResource("/home/thrymr/Downloads/sample.pdf");
-	  final File tempFile = new File("/home/thrymr/Downloads/sample.pdf");
-	  if(tempFile.isFile()) {
-		  byte[] content = null;
-		  try {
-		   //content = FileCopyUtils.copyToByteArray(resource.getInputStream());
-		   content = FileCopyUtils.copyToByteArray(new FileInputStream(tempFile));
-		   System.out.println("Converted .pdf to bytes successfully.");
-		  } catch (IOException e1) {
-		   System.err.println("Error while converting file to bytes.");
-		   e1.printStackTrace();
-		  }
-		  HttpHeaders headers = new HttpHeaders();
-		  headers.setContentType(MediaType.parseMediaType(MediaType.APPLICATION_PDF_VALUE));
-		  System.out.println("Download sample .pdf request completed");
-		  System.err.println(content.length+"<<<<<file length");
-		  return new ResponseEntity<byte[]>(content, headers, HttpStatus.OK);  
-	  }else {
-		  System.out.println("File not found");
-		  return null;
-	  }
-	 }
+	@GetMapping(path = "/api/file", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<?> getFile() {
+		try {
+			final File tempFile = new File("/home/thrymr/Downloads/Quotation.pdf");
+			System.out.println(tempFile.exists()+"======="+tempFile.length()+"====="+tempFile.isFile());
+			 if(tempFile.isFile()) {
+				  byte[] content = null;
+				  try {
+				   //content = FileCopyUtils.copyToByteArray(resource.getInputStream());
+				   content = FileCopyUtils.copyToByteArray(new FileInputStream(tempFile));
+				   System.out.println("Converted .pdf to bytes successfully. POST");
+				  } catch (IOException e1) {
+				   System.err.println("Error while converting file to bytes.");
+				   e1.printStackTrace();
+				  }
+				  HttpHeaders headers = new HttpHeaders();
+				  headers.setContentType(MediaType.parseMediaType(MediaType.APPLICATION_PDF_VALUE));
+				  headers.setAccessControlExposeHeaders(Collections.singletonList("Content-Disposition"));
+			      headers.set("Content-Disposition", "attachment; filename=" + "TestFile");
+				  System.out.println("Download sample .pdf request completed");
+				  System.err.println(content.length+"<<<<<file length");
+				  return new ResponseEntity<byte[]>(content, headers, HttpStatus.OK);  
+			  }
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Exception");
+			return null;
+		}
+		return null;
+    }
 }
+
+
+http://javabypatel.blogspot.in/2017/11/download-file-in-angular2.html

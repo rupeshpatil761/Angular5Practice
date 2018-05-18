@@ -1,8 +1,10 @@
 import { Component } from "@angular/core";
 
-import { Http, Headers, RequestOptions, RequestMethod, RequestOptionsArgs, URLSearchParams,Response} from '@angular/http';
+import { Http, Headers, RequestOptions, RequestMethod, RequestOptionsArgs, URLSearchParams,Response,ResponseContentType} from '@angular/http';
 
 import { Observable, Subject,Subscription} from 'rxjs';
+
+import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -15,42 +17,27 @@ export class PdfComponent {
 
   constructor(private http:Http) {}
 
-  private options = new RequestOptions(
-    { headers: new Headers({ 'Content-Type': 'application/json' })});
+  private options = new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json' })});
 
-downloadSampleCSVFiles() {
-    var nameOfFileToDownload = "22";
-    var result = this.downloadSampleCSV(nameOfFileToDownload);
-    result.subscribe(
-        success => {
-
-            //console.log(success);
-            //console.log("<<<<<<response");
-
-            var blob = new Blob([success["_body"]], { type: 'application/pdf' });
-
-            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-                window.navigator.msSaveOrOpenBlob(blob, nameOfFileToDownload);
-            } else {
-                var a = document.createElement('a');
-                a.href = URL.createObjectURL(blob);
-                a.download = nameOfFileToDownload;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            }
-        },
-        err => {
-            alert("Server error while downloading file.");
-        }
-    );
+downloadFile(){
+    this.downloadPdf(22);
 }
 
-downloadSampleCSV(fileNameToDownload) {
-    //return this.http.get("http://192.168.1.248:8021/download-quotation-for-pdf1/22");
-    return this.http.post("http://192.168.1.248:8021/download-quotation-for-pdf1", fileNameToDownload, this.options);
+downloadPdf(id: number) {
+    var options = new RequestOptions(
+        { headers: new Headers({ 'Content-Type': 'application/json' })});
+    return this.http
+              .get("http://192.168.1.248:8021/api/file", { responseType:ResponseContentType.Blob })
+      .toPromise().then(response => this.saveToFileSystem(response));;
+  }
 
+
+saveToFileSystem(response){
+    //console.log(response);
+    //console.log("<<<<<<response");
+    var blob = new Blob([response["_body"]], { type: 'application/pdf' });
+    //console.log(blob);console.log(" <<<blob");
+    saveAs(blob, "myPDF.pdf");
 }
-
   
 }

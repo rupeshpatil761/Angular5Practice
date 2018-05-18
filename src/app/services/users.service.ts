@@ -54,5 +54,4 @@ export class UserService{
     let calcTime = hours + ':' + minutes + ' ' + ampm;
     return calcTime;
   }
-
 }
