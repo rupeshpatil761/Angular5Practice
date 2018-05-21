@@ -1,12 +1,12 @@
 <div class="container">
   <header></header>
   <div>
-      <button class="btn-primary" (click)="addExtraTodo()">Add New</button>
-      <br><br><hr>
+      <br><button class="btn-primary" (click)="addExtraTodo()">Add Todo</button><br><hr>
       <ul id="todo-list">
           <li *ngFor="let todo of todos | async" >
               <h5>{{todo.name}}</h5>
           </li>
       </ul>
   </div>
+  
 </div>
