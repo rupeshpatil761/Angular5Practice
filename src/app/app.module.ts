@@ -4,7 +4,6 @@ import {DataTableModule} from 'angular2-datatable';
 import { AppComponent } from './app.component';
 import { Routes,RouterModule } from '@angular/router';
 import {PaginationComponent} from './pagination/pagination.component';
-import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
 import {ParamsComponent} from './params/params.component';
 import {UserService} from './services/users.service';
@@ -20,38 +19,39 @@ import {DatatableComponent} from './datatable/datatable.component';
 import {Angular5CSV} from './angular5csv/angular5csv.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';  // replaces previous Http service
+import {AppRoutes} from './app.routes';
+import {HeaderComponent} from './header/header.component';
+import { ObservableComponent } from './observable/observable.component';
 
-
-const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",component : PaginationComponent},
+/*const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",component : PaginationComponent},
 {path:"params",component : ParamsComponent},{path:"user",component : UserComponent},{path:"date-picker",component : DatePickerComponenet}
 ,{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"angular5csv",component : Angular5CSV}
-,{path:"pdf-download",component : PdfComponent}]; // {path:"user/:id",component : UserComponent}
+,{path:"pdf-download",component : PdfComponent}]; // {path:"user/:id",component : UserComponent}*/
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PaginationComponent,
-    HeaderComponent,
-    HomeComponent,
+    HomeComponent,HeaderComponent,
     ParamsComponent,
     UserComponent,
     DatePickerComponenet,
+    Angular5CSV,
     FormsComponent,
     DatatableComponent,
     PdfComponent,
-    Angular5CSV
+    ObservableComponent
   ],
   imports: [
+    AppRoutes,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    DataTableModule,
-    RouterModule.forRoot(routes),
+    DataTableModule,   
     Md2Module,
     NoopAnimationsModule,
     HttpModule
-    
   ],
   providers: [UserService,DatePickerService],
   bootstrap: [AppComponent]
