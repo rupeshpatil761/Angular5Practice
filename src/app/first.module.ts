@@ -20,7 +20,7 @@ const routes : Routes = [{path:"forms",component : FormsComponent},{path:"datata
   declarations: [
     FormsComponent,
     DatatableComponent,
-    PdfComponent,
+    PdfComponent
   ],
   imports: [
     AppRoutes,

@@ -14,13 +14,14 @@ import {DatePickerComponenet} from './datepicker/datepicker.component';
 import {DatePickerService} from './services/datepicker.service';
 import { Md2Module }  from 'md2';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsComponent} from './forms/forms.component';
+//import {FormsComponent} from './forms/forms.component';
 import {DatatableComponent} from './datatable/datatable.component';
 import {Angular5CSV} from './angular5csv/angular5csv.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';  // replaces previous Http service
 import {AppRoutes} from './app.routes';
 import {HeaderComponent} from './header/header.component';
+import { FirstModule } from './first.module';
 import { ObservableComponent } from './observable/observable.component';
 
 /*const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",component : PaginationComponent},
@@ -37,14 +38,12 @@ import { ObservableComponent } from './observable/observable.component';
     ParamsComponent,
     UserComponent,
     DatePickerComponenet,
+    ObservableComponent,
     Angular5CSV,
-    FormsComponent,
-    DatatableComponent,
-    PdfComponent,
-    ObservableComponent
   ],
   imports: [
     AppRoutes,
+    FirstModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

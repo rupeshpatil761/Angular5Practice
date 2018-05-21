@@ -4,6 +4,9 @@
 3) md2 Datepicker with pipes.
 4) Bootstrap datatable with export options.
 5) angular5-csv
+6) Pdf file download from server api response
+7) Observable Service
+8) Lazy Loading of Modules
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.
 

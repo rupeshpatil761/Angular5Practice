@@ -13,8 +13,8 @@ import { ObservableComponent } from './observable/observable.component';
 
 export const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",component : PaginationComponent},
 {path:"params",component : ParamsComponent},{path:"user",component : UserComponent},{path:"date-picker",component : DatePickerComponenet}
-,{path:"angular5csv",component : Angular5CSV},{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"pdf-download",component : PdfComponent},
-{path:"todo-observable",component:ObservableComponent}];
+,{path:"angular5csv",component : Angular5CSV},{path:"todo-observable",component:ObservableComponent},{path:'first-module', loadChildren: './first.module#FirstModule'}];
+//{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"pdf-download",component : PdfComponent}
 //{path:'first-module', loadChildren: './first.module#FirstModule'}];  <<< Multiple modules with lazy loading but need to share header component between modules
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes);
