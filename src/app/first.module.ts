@@ -11,16 +11,19 @@ import { Md2Module }  from 'md2';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import {AppRoutes} from './app.routes';
-import {SharedModule} from './shared.module';
+import { PipesComponent } from './pipes/pipes.component';
 
-const routes : Routes = [{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"pdf-download",component : PdfComponent}];
+const routes : Routes = [{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"pdf-download",component : PdfComponent}
+,{path:"pipes",component:PipesComponent}];
 
 @NgModule({
   declarations: [
     FormsComponent,
     DatatableComponent,
-    PdfComponent
+    PdfComponent,
+    PipesComponent
   ],
   imports: [
     AppRoutes,
@@ -31,6 +34,7 @@ const routes : Routes = [{path:"forms",component : FormsComponent},{path:"datata
     Md2Module,
     NoopAnimationsModule,
     HttpModule,
+    HttpClientModule,
     RouterModule.forChild(routes)
   ],
   providers: [UserService] //Dont Write bootstrap section

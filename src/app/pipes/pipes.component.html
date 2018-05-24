@@ -1,0 +1,31 @@
+<div class="container">
+    <br><br>
+    <p>{{cur|currency:'EUR':true}}</p> <p>Above will display in INR even currency type is EUR bcoz locale is not mentioned</p><br>
+    
+    <p>{{cur|currency:'INR':true}}</p><p>Above will display in INR only</p>
+
+    <span>To UpperCase</span>&nbsp;&nbsp;<input [ngModel]="title | uppercase" (ngModelChange)="title=$event" name="inputField" type="text" /><br><br>
+
+    <span>Euro Currency</span>&nbsp;&nbsp;<input type="text" name="income" placeholder="Annual Income" [(ngModel)]="value" (focusout)="transformAmount($event)"
+        required pattern="[0-9]+" #income="ngModel">
+
+    <br><br>
+    <span>Mask Money Currency Helper</span>&nbsp;&nbsp;  <input type="text" id="demo1" />
+
+    <!--<input [(ngModel)]="moneyText" [(moneyModel)]="moneyValue" [money-mask-options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" mask-money />-->
+</div>
+
+<!--
+    Useful Links: 
+    https://github.com/mahiwaykos/currencyPipe/blob/master/src/app/app.component.ts
+    https://angular.io/api/common/CurrencyPipe
+    ng serve --locale 'es-ES' 
+    npm install ng2-money-mask --save  && give path of jquery file in angular-cli.json
+    sudo npm install jquery -- save && give path of jquery file in angular-cli.json
+
+    https://www.jqueryscript.net/demo/jQuery-Currency-Input-Filed-Mask-Plugin-maskmoney/
+
+    https://www.jqueryscript.net/form/jQuery-Currency-Input-Filed-Mask-Plugin-maskmoney.html
+
+-->
+
