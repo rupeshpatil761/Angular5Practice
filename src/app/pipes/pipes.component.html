@@ -12,6 +12,9 @@
     <br><br>
     <span>Mask Money Currency Helper</span>&nbsp;&nbsp;  <input type="text" id="demo1" />
 
+    <br><br>
+    <span>ng2-currency-mask</span>&nbsp;&nbsp;<input currencyMask [(ngModel)]="value" [options]="{ prefix: '', thousands: '.', decimal: ',' }"/>
+
     <!--<input [(ngModel)]="moneyText" [(moneyModel)]="moneyValue" [money-mask-options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" mask-money />-->
 </div>
 
@@ -23,9 +26,11 @@
     npm install ng2-money-mask --save  && give path of jquery file in angular-cli.json
     sudo npm install jquery -- save && give path of jquery file in angular-cli.json
 
-    https://www.jqueryscript.net/demo/jQuery-Currency-Input-Filed-Mask-Plugin-maskmoney/
+    https://www.jqueryscript.net/demo/jQuery-Currency-Input-Filed-Mask-Plugin-maskmoney/ << working
 
     https://www.jqueryscript.net/form/jQuery-Currency-Input-Filed-Mask-Plugin-maskmoney.html
 
+
+    https://www.npmjs.com/package/ng2-currency-mask << working
 -->
 

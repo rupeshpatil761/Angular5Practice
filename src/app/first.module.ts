@@ -14,6 +14,8 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import {AppRoutes} from './app.routes';
 import { PipesComponent } from './pipes/pipes.component';
+import { CurrencyMaskModule } from "ng2-currency-mask";
+
 
 const routes : Routes = [{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"pdf-download",component : PdfComponent}
 ,{path:"pipes",component:PipesComponent}];
@@ -35,6 +37,7 @@ const routes : Routes = [{path:"forms",component : FormsComponent},{path:"datata
     NoopAnimationsModule,
     HttpModule,
     HttpClientModule,
+    CurrencyMaskModule,
     RouterModule.forChild(routes)
   ],
   providers: [UserService] //Dont Write bootstrap section

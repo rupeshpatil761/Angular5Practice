@@ -25,8 +25,6 @@ import { FirstModule } from './first.module';
 import { ObservableComponent } from './observable/observable.component';
 import {CustomCurrency} from './services/currency.pipe';
 //import {LOCALE_ID} from '@angular/core';
-import { NgxCurrencyModule } from "ngx-currency";
-
 
 /*const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",component : PaginationComponent},
 {path:"params",component : ParamsComponent},{path:"user",component : UserComponent},{path:"date-picker",component : DatePickerComponenet}
@@ -55,8 +53,7 @@ import { NgxCurrencyModule } from "ngx-currency";
     DataTableModule,   
     Md2Module,
     NoopAnimationsModule,
-    HttpModule,
-    NgxCurrencyModule
+    HttpModule
   ],
   providers: [UserService,DatePickerService],//,{provide: LOCALE_ID, useValue: 'es-ES'}
   bootstrap: [AppComponent]

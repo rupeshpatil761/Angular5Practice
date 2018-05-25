@@ -36,10 +36,13 @@ import co.tdis.motorsport.util.MotorSportResponse;
 public class QuotationController {
 
 	@GetMapping(path = "/api/file", produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<?> getFile() {
+    public ResponseEntity<?> getFile(@PathVariable Long id,Authentication authentication){
 		try {
-			final File tempFile = new File("/home/thrymr/Downloads/Quotation.pdf");
-			System.out.println(tempFile.exists()+"======="+tempFile.length()+"====="+tempFile.isFile());
+			MotorSportResponse motorSportResponse = quotationService.getQuotation(id, authentication);
+			if (motorSportResponse.getIsSuccess()) {
+			final File tempFile = quotationService.downloadQuotationService(motorSportResponse.getPayLoad());
+			//final File tempFile = new File("/home/thrymr/Downloads/Quotation.pdf");
+			//System.out.println(tempFile.exists()+"======="+tempFile.length()+"====="+tempFile.isFile());
 			 if(tempFile.isFile()) {
 				  byte[] content = null;
 				  try {
@@ -49,23 +52,84 @@ public class QuotationController {
 				  } catch (IOException e1) {
 				   System.err.println("Error while converting file to bytes.");
 				   e1.printStackTrace();
+				   return null;
 				  }
 				  HttpHeaders headers = new HttpHeaders();
 				  headers.setContentType(MediaType.parseMediaType(MediaType.APPLICATION_PDF_VALUE));
 				  headers.setAccessControlExposeHeaders(Collections.singletonList("Content-Disposition"));
 			      headers.set("Content-Disposition", "attachment; filename=" + "TestFile");
-				  System.out.println("Download sample .pdf request completed");
 				  System.err.println(content.length+"<<<<<file length");
 				  return new ResponseEntity<byte[]>(content, headers, HttpStatus.OK);  
+			  }else {
+				 return null;
 			  }
+			}else {
+				System.err.println("Authorization error");
+				return null;	
+			}
 		}catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("Exception");
+			System.err.println("Exception");
 			return null;
 		}
-		return null;
     }
 }
 
+===================
+
+    <li role="presentation"><a download role="menuitem" tabindex="-1" (click)="downloadFile()" >DOWNLOAD</a></li>
+
+    downloadFile(){
+        this.uS.downloadPdf(this.quotationId).toPromise().then(response => this.saveToFileSystem(response));;
+    }
+    
+    saveToFileSystem(response){
+        //console.log(response);
+        //console.log("<<<<<<response");
+        var blob = new Blob([response["_body"]], { type: 'application/pdf' });
+        //console.log(blob);console.log(" <<<blob");
+        if(blob.size>0){
+            var fileName = "Quotation.pdf";
+            //Using File Saver
+            //saveAs(blob, fileName);
+            //Old Method
+
+            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveOrOpenBlob(blob, fileName);
+            } else {
+                var a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }    
+        }else{
+            alert("File not found");    
+        }
+        //saveAs(blob, "Quotation.pdf");
+    }
+===================
+ //service method
+ downloadPdf(id: number) {
+     //const options = new RequestOptions({ headers: this.headers, params: undefined,responseType:ResponseContentType.Blob});
+     var url = this.motorsportApi+"/api/file/"+id;
+     //return this.httpClient.get(url,{ headers: this.headers, responseType:'blob'});       << not working
+     //return this.http.get(url,{responseType:ResponseContentType.Blob});  // workign but no authorization
+     let headers = new Headers();
+     headers.append('Authorization',this.autherization);
+     return this.http.get(url,{ headers: headers, responseType:ResponseContentType.Blob}); 
+  }
+
+=====================
+
+import { Headers } from '@angular/http';
+import { Http } from '@angular/http';
+import {HttpClient, HttpHeaders,HttpParams} from "@angular/common/http";
+import {RequestOptions,ResponseContentType} from '@angular/http';
+
+========================
 
 http://javabypatel.blogspot.in/2017/11/download-file-in-angular2.html
+
+https://blog.hackages.io/angular-http-httpclient-same-but-different-86a50bbcc450
