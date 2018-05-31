@@ -16,6 +16,7 @@
     <span>ng2-currency-mask</span>&nbsp;&nbsp;<input currencyMask [(ngModel)]="value" [options]="{ prefix: '', thousands: '.', decimal: ',' }"/>
 
     <!--<input [(ngModel)]="moneyText" [(moneyModel)]="moneyValue" [money-mask-options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" mask-money />-->
+    <br><span>Custom Currency Pipe  :  </span><span>{{test1 | customCurrency : 'EUR' : 'es-ES'}} </span>
 </div>
 
 <!--

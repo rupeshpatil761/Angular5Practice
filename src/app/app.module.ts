@@ -23,7 +23,7 @@ import {AppRoutes} from './app.routes';
 import {HeaderComponent} from './header/header.component';
 import { FirstModule } from './first.module';
 import { ObservableComponent } from './observable/observable.component';
-import {CustomCurrency} from './services/currency.pipe';
+
 //import {LOCALE_ID} from '@angular/core';
 
 /*const routes : Routes = [{path:"",component : HomeComponent},{path:"pagination",component : PaginationComponent},
@@ -41,8 +41,7 @@ import {CustomCurrency} from './services/currency.pipe';
     UserComponent,
     DatePickerComponenet,
     ObservableComponent,
-    Angular5CSV,
-    CustomCurrency
+    Angular5CSV
   ],
   imports: [
     AppRoutes,

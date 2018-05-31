@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {AppRoutes} from './app.routes';
 import { PipesComponent } from './pipes/pipes.component';
 import { CurrencyMaskModule } from "ng2-currency-mask";
-
+import {CustomCurrency} from './services/currency.pipe';
 
 const routes : Routes = [{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"pdf-download",component : PdfComponent}
 ,{path:"pipes",component:PipesComponent}];
@@ -25,7 +25,8 @@ const routes : Routes = [{path:"forms",component : FormsComponent},{path:"datata
     FormsComponent,
     DatatableComponent,
     PdfComponent,
-    PipesComponent
+    PipesComponent,
+    CustomCurrency
   ],
   imports: [
     AppRoutes,

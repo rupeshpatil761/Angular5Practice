@@ -1,8 +1,15 @@
-import { Component,Pipe,PipeTransform } from "@angular/core";
+import { Component,Pipe,PipeTransform,LOCALE_ID} from "@angular/core";
+import {CurrencyPipe} from "@angular/common";
 
-@Pipe({name:'currencyPipe'})
+@Pipe({name:'customCurrency'})
 export class CustomCurrency implements PipeTransform {
-  transform(items: any[], value: string): string {
-      return items.slice(1)+' ' +items.slice(0,1);
+
+  constructor(private currencyPipe: CurrencyPipe) {}
+
+  transform(value: any,currencyCode?: string,locale?:any): string {
+    console.log(locale+"<<<<<<<<console.log(locale);");
+    let output = this.currencyPipe.transform(value,currencyCode,'symbol',undefined,locale);
+    return output.replace("€","");
   }
+
 }

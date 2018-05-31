@@ -12,6 +12,8 @@ export class PipesComponent implements  AfterViewInit {
     formattedAmount: string = '0';
     value: any;
 
+    test1 : number = 111111111;
+
     constructor(private currencyPipe: CurrencyPipe) {
 
     }
