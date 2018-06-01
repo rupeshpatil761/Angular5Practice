@@ -22,6 +22,7 @@ import { HttpModule } from '@angular/http';  // replaces previous Http service
 import {AppRoutes} from './app.routes';
 import {HeaderComponent} from './header/header.component';
 import { FirstModule } from './first.module';
+import { ShareableModule } from './shareable.module';
 import { ObservableComponent } from './observable/observable.component';
 
 //import {LOCALE_ID} from '@angular/core';
@@ -30,7 +31,9 @@ import { ObservableComponent } from './observable/observable.component';
 {path:"params",component : ParamsComponent},{path:"user",component : UserComponent},{path:"date-picker",component : DatePickerComponenet}
 ,{path:"forms",component : FormsComponent},{path:"datatable",component : DatatableComponent},{path:"angular5csv",component : Angular5CSV}
 ,{path:"pdf-download",component : PdfComponent}]; // {path:"user/:id",component : UserComponent}*/
-
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+registerLocaleData(localeEs, 'es-ES');
 
 @NgModule({
   declarations: [
@@ -46,6 +49,7 @@ import { ObservableComponent } from './observable/observable.component';
   imports: [
     AppRoutes,
     FirstModule,
+    ShareableModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
